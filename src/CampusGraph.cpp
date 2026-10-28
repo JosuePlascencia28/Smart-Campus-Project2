@@ -1,6 +1,6 @@
 #include "../include/CampusGraph.h"
 
-// Add a building to the campus
+// add a building to the campus
 void CampusGraph::addBuilding(string name) {
     buildings.push_back(name);
     connections.push_back(vector<int>());
@@ -16,7 +16,7 @@ int CampusGraph::findBuilding(string name) {
     return -1;
 }
 
-// Connect two campus buildings
+// connecting two campus buildings
 void CampusGraph::addConnection(string building1, string building2) {
     int a = findBuilding(building1);
     int b = findBuilding(building2);
