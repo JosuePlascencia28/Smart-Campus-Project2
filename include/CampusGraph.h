@@ -14,6 +14,7 @@ private:
 public:
     void addBuilding(string name);    
     int findBuilding(string name);
+    void loadBuildings(string filename);
     void addConnection(string building1, string building2);
     void showBuildings();
     void showGraph();
