@@ -1,18 +1,36 @@
 #include "../include/CampusGraph.h"
+#include <cctype>
+#include <queue>
 
-// add a building to the campus
+// add a building if it doesn't already exist
 void CampusGraph::addBuilding(string name) {
+    if (findBuilding(name) != -1) {
+        cout << "Duplicate building: " << name << endl;
+        return;
+    }
+
     buildings.push_back(name);
     connections.push_back(vector<int>());
 }
 
-// find the building by name
+// finding a building without worrying about caps
 int CampusGraph::findBuilding(string name) {
+    for (char &c : name) {
+        c = tolower(c);
+    }
+
     for (int i = 0; i < buildings.size(); i++) {
-        if (buildings[i] == name) {
+        string current = buildings[i];
+
+        for (char &c : current) {
+            c = tolower(c);
+        }
+
+        if (current == name) {
             return i;
         }
     }
+
     return -1;
 }
 
