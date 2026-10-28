@@ -175,6 +175,37 @@ void CampusGraph::loadBuildings(string filename) {
 
     file.close();
 }
+// loading connections from a text file
+void CampusGraph::loadConnections(string filename) {
+    ifstream file(filename);
+    string line;
+
+    if (!file.is_open()) {
+        cout << "Cannot open file: " << filename << endl;
+        return;
+    }
+
+    while (getline(file, line)) {
+        if (line.empty() || line[0] == '#') {
+            continue;
+        }
+
+        size_t pos = line.find('|');
+
+        if (pos == string::npos) {
+            cout << "Invalid connection: " << line << endl;
+            continue;
+        }
+
+        string building1 = line.substr(0, pos);
+        string building2 = line.substr(pos + 1);
+
+        addConnection(building1, building2);
+    }
+
+    file.close();
+}
+
 
 
 
