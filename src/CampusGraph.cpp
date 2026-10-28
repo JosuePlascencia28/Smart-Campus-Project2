@@ -1,6 +1,8 @@
 #include "../include/CampusGraph.h"
 #include <cctype>
 #include <queue>
+#include <fstream>
+
 
 // add a building if it doesn't already exist
 void CampusGraph::addBuilding(string name) {
@@ -150,6 +152,28 @@ void CampusGraph::showBuildings() {
     }
 
     cout << "Total buildings: " << buildings.size() << endl;
+}
+
+// load buildings from a text file
+void CampusGraph::loadBuildings(string filename) {
+    ifstream file(filename);
+    string name;
+
+    if (!file.is_open()) {
+        cout << "Cannot open file: " << filename << endl;
+        return;
+    }
+
+    while (getline(file, name)) {
+        // Skip blank lines and comments
+        if (name.empty() || name[0] == '#') {
+            continue;
+        }
+
+        addBuilding(name);
+    }
+
+    file.close();
 }
 
 
