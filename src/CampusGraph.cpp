@@ -59,5 +59,22 @@ void CampusGraph::showGraph() {
     }
 }
 
+// display building and connection statistics
+void CampusGraph::showStats() {
+    int totalConnections = 0;
+
+    cout << "Total buildings: " << buildings.size() << endl;
+
+    for (int i = 0; i < buildings.size(); i++) {
+        int degree = connections[i].size();
+
+        cout << buildings[i] << " - Degree: " << degree << endl;
+
+        totalConnections += degree;
+    }
+
+    cout << "Total connections: " << totalConnections / 2 << endl;
+}
+
 
 
