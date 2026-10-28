@@ -76,5 +76,47 @@ void CampusGraph::showStats() {
     cout << "Total connections: " << totalConnections / 2 << endl;
 }
 
+#include <queue>
+
+// finding reachable buildings using BFS
+void CampusGraph::bfs(string start) {
+    int s = findBuilding(start);
+
+    if (s == -1) {
+        cout << "Building not found: " << start << endl;
+        return;
+    }
+
+    vector<bool> visited(buildings.size(), false);
+    vector<int> distance(buildings.size(), 0);
+    queue<int> q;
+
+    visited[s] = true;
+    q.push(s);
+
+    int count = 0;
+
+    while (!q.empty()) {
+        int current = q.front();
+        q.pop();
+
+        cout << buildings[current]
+             << " (distance " << distance[current] << ")" << endl;
+
+        count++;
+
+        for (int next : connections[current]) {
+            if (!visited[next]) {
+                visited[next] = true;
+                distance[next] = distance[current] + 1;
+                q.push(next);
+            }
+        }
+    }
+
+    cout << "Reachable: " << count
+         << " of " << buildings.size() << " buildings" << endl;
+}
+
 
 
