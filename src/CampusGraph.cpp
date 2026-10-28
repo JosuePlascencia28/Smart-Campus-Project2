@@ -136,5 +136,21 @@ void CampusGraph::bfs(string start) {
          << " of " << buildings.size() << " buildings" << endl;
 }
 
+// displaying all campus buildings
+void CampusGraph::showBuildings() {
+    if (buildings.empty()) {
+        cout << "No buildings available." << endl;
+        return;
+    }
+
+    cout << "Campus Buildings:" << endl;
+
+    for (int i = 0; i < buildings.size(); i++) {
+        cout << i + 1 << ". " << buildings[i] << endl;
+    }
+
+    cout << "Total buildings: " << buildings.size() << endl;
+}
+
 
 
