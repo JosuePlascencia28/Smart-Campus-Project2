@@ -37,4 +37,27 @@ void CampusGraph::addConnection(string building1, string building2) {
     connections[b].push_back(a);
 }
 
+ // display buildings and their connections
+void CampusGraph::showGraph() {
+    if (buildings.empty()) {
+        cout << "No buildings available." << endl;
+        return;
+    }
+
+    for (int i = 0; i < buildings.size(); i++) {
+        cout << buildings[i] << ": ";
+
+        if (connections[i].empty()) {
+            cout << "(no connections)";
+        } else {
+            for (int j : connections[i]) {
+                cout << buildings[j] << " ";
+            }
+        }
+
+        cout << endl;
+    }
+}
+
+
 
