@@ -12,7 +12,8 @@ private:
     vector<vector<int>> connections;
 
 public:
-    void addBuilding(string name);
+    void addBuilding(string name);    
+    int findBuilding(string name);
     void addConnection(string building1, string building2);
     void showBuildings();
     void showGraph();
