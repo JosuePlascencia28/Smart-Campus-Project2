@@ -45,6 +45,7 @@ bool HashTable::insert(Facility facility) {
     }
 
     table[index].push_back(facility);
+    facilities.push_back(facility);
     entries++;
 
     return true;
