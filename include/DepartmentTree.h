@@ -5,13 +5,13 @@
 #include <vector>
 using namespace std;
 
-// Represents one department
+// one department
 struct DepartmentNode {
     string name;
     vector<DepartmentNode*> children;
 };
 
-// Stores the department hierarchy
+// stores the department hierarchy
 class DepartmentTree {
 private:
     DepartmentNode* root = nullptr;
