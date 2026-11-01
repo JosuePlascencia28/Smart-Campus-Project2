@@ -157,4 +157,24 @@ void HashTable::loadFacilities(string filename, CampusGraph &campus) {
     showStats();
 }
 
+ // display all accepted facilities
+void HashTable::showFacilities() {
+    if (facilities.empty()) {
+        cout << "No facilities available." << endl;
+        return;
+    }
+
+    cout << "Campus Facilities:" << endl;
+
+    for (Facility f : facilities) {
+        cout << f.id << " | "
+             << f.name << " | "
+             << f.building << " | "
+             << f.category << endl;
+    }
+
+    cout << "Total facilities: "
+         << facilities.size() << endl;
+}
+
 
