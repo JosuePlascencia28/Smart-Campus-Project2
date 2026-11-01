@@ -48,3 +48,43 @@ void DepartmentTree::addDepartment(string name, string parent) {
     parentNode->children.push_back(newNode);
 }
 
+// search for a department and display its information
+void DepartmentTree::searchDepartment(string name) {
+    DepartmentNode* node = findNode(root, name);
+
+    if (node == nullptr) {
+        cout << "Department not found: " << name << endl;
+        return;
+    }
+
+    cout << "Department: " << node->name << endl;
+    cout << "Direct children: " << node->children.size() << endl;
+}
+
+// Display departments with indentation
+void printTree(DepartmentNode* node, int depth) {
+    if (node == nullptr) {
+        return;
+    }
+
+    for (int i = 0; i < depth; i++) {
+        cout << "    ";
+    }
+
+    cout << node->name << endl;
+
+    for (DepartmentNode* child : node->children) {
+        printTree(child, depth + 1);
+    }
+}
+
+// Display the department hierarchy
+void DepartmentTree::showHierarchy() {
+    if (root == nullptr) {
+        cout << "No departments available." << endl;
+        return;
+    }
+
+    printTree(root, 0);
+}
+
