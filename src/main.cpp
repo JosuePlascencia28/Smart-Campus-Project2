@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include "../include/CampusGraph.h"
+#include "../include/HashTable.h"
+
 
 using namespace std;
 
@@ -20,6 +22,12 @@ int main(int argc, char* argv[]) {
 
     campus.loadBuildings(dataFolder + "buildings.txt");
     campus.loadConnections(dataFolder + "connections.txt");
+        
+    HashTable facilities;
+    
+    facilities.loadFacilities(dataFolder + "facilities.txt", campus);
+    facilities.showFacilities();
+
 
     campus.showGraph();
     campus.showStats();
