@@ -42,3 +42,28 @@ bool HashTable::insert(Facility facility) {
     return true;
 }
 
+bool HashTable::search(string id, Facility &result) {
+    
+    for (char &c : id) {
+        c = toupper(c);
+    }
+
+    int index = hashFunction(id);
+
+    for (Facility f : table[index]) {
+        if (f.id == id) {
+            result = f;
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void HashTable::showStats() {
+    cout << "Hash table capacity: " << SIZE << endl;
+    cout << "Total entries: " << entries << endl;
+    cout << "Total collisions: " << collisions << endl;
+}
+
+
