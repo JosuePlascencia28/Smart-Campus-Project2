@@ -57,12 +57,75 @@ int main(int argc, char* argv[]) {
         if (choice == 1) {
             facilities.showFacilities();
         }
+                
+        else if (choice == 2) {
+            string id;
+            Facility result;
+        
+            cout << "Enter facility ID: ";
+            cin >> id;
+        
+            if (!facilities.validID(id)) {
+                cout << "Invalid ID. Use F followed by 3 digits." << endl;
+            }
+            else if (facilities.search(id, result)) {
+                cout << "Facility found: " << endl;
+                cout << result.id << " | "
+                     << result.name << " | "
+                     << result.building << " | "
+                     << result.category << endl;
+            }
+            else {
+                cout << "Facility not found: " << id << endl;
+            }
+        }
+
         else if (choice == 3) {
             campus.showGraph();
         }
         else if (choice == 4) {
             campus.showStats();
+        }     
+        else if (choice == 5) {
+            string start;
+        
+            cout << "Enter starting building: ";
+            cin >> ws;
+            getline(cin, start);
+        
+            if (start.empty()) {
+                cout << "Building name cannot be blank." << endl;
+            } else {
+                campus.bfs(start);
+            }
         }
+        
+        else if (choice == 6) {
+            string name, parent;
+        
+            cout << "Enter department name: ";
+            getline(cin >> ws, name);
+        
+            cout << "Enter parent department: ";
+            getline(cin, parent);
+        
+            departments.addDepartment(name, parent);
+        }
+            
+        // search for a department
+        else if (choice == 7) {
+            string name;
+        
+            cout << "Enter department name: ";
+            getline(cin >> ws, name);
+        
+            if (name.empty()) {
+                cout << "Department name cannot be blank." << endl;
+            } else {
+                departments.searchDepartment(name);
+            }
+        }
+
         else if (choice == 8) {
             departments.showHierarchy();
         }
