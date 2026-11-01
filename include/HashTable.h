@@ -26,6 +26,8 @@ public:
     bool insert(Facility facility);
     bool search(string id, Facility &result);
     void showStats();
+    bool validID(string id); 
 };
+
 
 
