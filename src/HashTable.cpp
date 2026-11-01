@@ -1,6 +1,9 @@
 #include "../include/HashTable.h"
 #include <iostream>
 #include <cctype>
+#include <fstream>
+#include <sstream>
+
 using namespace std;
 
 // calculate a bucket number for a facility ID
@@ -92,6 +95,66 @@ bool HashTable::validID(string id) {
     }
 
     return true;
+}
+
+// load facilities from a text file
+void HashTable::loadFacilities(string filename, CampusGraph &campus) {
+    ifstream file(filename);
+    string line;
+    int accepted = 0;
+    int rejected = 0;
+    int lineNumber = 0;
+
+    if (!file.is_open()) {
+        cout << "Cannot open file: " << filename << endl;
+        return;
+    }
+
+    while (getline(file, line)) {
+        lineNumber++;
+
+        if (line.empty() || line[0] == '#') {
+            continue;
+        }
+
+        stringstream ss(line);
+        Facility f;
+
+        getline(ss, f.id, '|');
+        getline(ss, f.name, '|');
+        getline(ss, f.building, '|');
+        getline(ss, f.category);
+
+        if (f.id.empty() || f.name.empty() ||
+            f.building.empty() || f.category.empty()) {
+            cout << filename << " line " << lineNumber
+                 << ": Missing information." << endl;
+            rejected++;
+            continue;
+        }
+
+        int buildingIndex = campus.findBuilding(f.building);
+
+        if (buildingIndex == -1) {
+            cout << filename << " line " << lineNumber
+                 << ": Unknown building " << f.building << endl;
+            rejected++;
+            continue;
+        }
+
+        if (insert(f)) {
+            accepted++;
+        } else {
+            cout << filename << " line " << lineNumber
+                 << ": Invalid or duplicate facility ID." << endl;
+            rejected++;
+        }
+    }
+
+    cout << filename << ": " << accepted
+         << " accepted, " << rejected << " rejected." << endl;
+
+    showStats();
 }
 
 
