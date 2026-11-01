@@ -27,6 +27,9 @@ public:
     bool search(string id, Facility &result);
     void showStats();
     bool validID(string id); 
+    void loadFacilities(string filename);
+    void showFacilities();
+
 };
 
 
