@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include "CampusGraph.h"
 using namespace std;
 
 // stores information about a campus facility
@@ -28,7 +29,7 @@ public:
     bool search(string id, Facility &result);
     void showStats();
     bool validID(string id); 
-    void loadFacilities(string filename);
+    void loadFacilities(string filename, CampusGraph &campus);
     void showFacilities();
 
 };
