@@ -23,8 +23,16 @@ bool HashTable::insert(Facility facility) {
         c = toupper(c);
     }
 
+
     facility.id = id;
+    
+    if (!validID(id)) {
+        cout << "Invalid facility ID: " << id << endl;
+        return false;
+    }
+    
     int index = hashFunction(id);
+
 
     for (Facility f : table[index]) {
         if (f.id == id) {
