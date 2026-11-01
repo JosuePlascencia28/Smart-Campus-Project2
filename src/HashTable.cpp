@@ -66,4 +66,23 @@ void HashTable::showStats() {
     cout << "Total collisions: " << collisions << endl;
 }
 
+// Check if a facility ID is valid
+bool HashTable::validID(string id) {
+    if (id.length() != 4) {
+        return false;
+    }
+
+    if (toupper(id[0]) != 'F') {
+        return false;
+    }
+
+    for (int i = 1; i < 4; i++) {
+        if (!isdigit(id[i])) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 
