@@ -2,6 +2,8 @@
 #include <string>
 #include "../include/CampusGraph.h"
 #include "../include/HashTable.h"
+#include "../include/DepartmentTree.h"
+
 
 
 using namespace std;
@@ -27,6 +29,11 @@ int main(int argc, char* argv[]) {
     
     facilities.loadFacilities(dataFolder + "facilities.txt", campus);
     facilities.showFacilities();
+        
+    DepartmentTree departments;
+    
+    departments.loadDepartments(dataFolder + "departments.txt");
+
 
 
     campus.showGraph();
