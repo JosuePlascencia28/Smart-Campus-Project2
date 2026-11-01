@@ -17,6 +17,7 @@ class HashTable {
 private:
     static const int SIZE = 101;
     vector<Facility> table[SIZE];
+    vector<Facility> facilities;
     int entries = 0;
     int collisions = 0;
 
